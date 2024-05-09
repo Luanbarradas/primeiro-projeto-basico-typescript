@@ -1,0 +1,21 @@
+/* compiladores básicos do projeto */
+{
+  "compilerOptions": {
+    "target": "ES2018" /* vem com o es2016 */,
+    "lib": ["ES2018"] /* com quais tem compatibilidade */,
+    "module": "commonjs" /* tipo de exportação dos dos modules */,
+    "moduleResolution": "node" /* veio com o node10 */,
+    "resolveJsonModule": true /* permite importar json */,
+    "allowJs": true /* permite importar arquivos js num projeto ts */,
+    "outDir": "./dist" /* qual a pasta q vai ficar os js (em convenção o nome da pasta é "dist") */,
+    "esModuleInterop": true /* pras outras bibliotecas suportarem o ts */,
+    "forceConsistentCasingInFileNames": true /* distingue letra maiuscula e minuscula na importação do arquivo */,
+    "strict": true /* verifica o ts de forma restrita (obriga a fazer o ts com tipo certinho) */,
+    "noImplicitAny": true /* n pode deixar tipos implicitamente com any */,
+    "typeRoots": [
+      "./src/@types"
+    ] /* pasta de tipos personalizados q tem no projeto */
+  },
+  "include": ["src/**/*"] /* pastas q o ts tem q verificar os arquivos */,
+  "exclude": ["node_modules", "dist"] /* pastas q o ts não deve "olhar" */
+}
