@@ -1,6 +1,6 @@
-import conexao from "knex";
+import connection from "knex";
 
-export const knex = conexao({
+export const knex = connection({
   client: "pg",
   connection: {
     host: process.env.DB_HOST,
