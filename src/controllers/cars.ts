@@ -63,6 +63,51 @@ export const registerCars = async (req: Request, res: Response) => {
   }
 };
 
-export const updateCars = async (req: Request, res: Response) => {};
+export const updateCars = async (req: Request, res: Response) => {
+  const { id } = req.params;
+  const { marca, modelo, cor, ano, valor } = req.body;
+  try {
+    const car = await knex<Car>("carros")
+      .where({ id: Number(id) })
+      .first();
 
-export const deleteCars = async (req: Request, res: Response) => {};
+    if (!car) {
+      return res.status(404).json({ message: "Carro não encontrado." });
+    }
+
+    await knex<Car>("carros")
+      .where({ id: Number(id) })
+      .update({
+        marca,
+        modelo,
+        cor,
+        ano,
+        valor,
+      });
+
+    return res.status(204).send();
+  } catch {
+    return res.status(500).json({ message: "Erro interno do servidor." });
+  }
+};
+
+export const deleteCars = async (req: Request, res: Response) => {
+  const { id } = req.params;
+  try {
+    const car = await knex<Car>("carros")
+      .where({ id: Number(id) })
+      .first();
+
+    if (!car) {
+      return res.status(404).json({ message: "Carro não encontrado." });
+    }
+
+    await knex<Car>("carros")
+      .where({ id: Number(id) })
+      .del();
+
+    return res.status(204).send();
+  } catch {
+    return res.status(500).json({ message: "Erro interno do servidor." });
+  }
+};
